@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arip Munandar — Telecommunications & IoT Security Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #0A0F17;
+    --panel:     #101826;
+    --panel-2:   #0D1420;
+    --line:      #1D2A3D;
+    --text:      #E6EBF2;
+    --muted:     #7C8AA0;
+    --dim:       #4C596E;
+    --amber:     #FFB454;
+    --teal:      #33D6BC;
+    --red:       #FF6B6B;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--font-body);
+    line-height:1.6; overflow-x:hidden;
+  }
+  ::selection{ background:var(--amber); color:#0A0F17; }
+
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 28px; }
+
+  /* background grid texture */
+  .grid-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+  }
+
+  /* ---------- topbar ---------- */
+  header.topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,15,23,0.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1040px; margin:0 auto; padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{ font-family:var(--font-mono); font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+  .dot{ width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal); animation:pulse 2s infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  nav{ display:flex; gap:26px; font-family:var(--font-mono); font-size:12.5px; color:var(--muted); }
+  nav a{ transition:color .15s; }
+  nav a:hover{ color:var(--amber); }
+
+  /* ---------- hero ---------- */
+  .hero{ position:relative; padding:88px 0 64px; }
+  .status-line{
+    font-family:var(--font-mono); font-size:12px; color:var(--teal);
+    display:flex; align-items:center; gap:10px; margin-bottom:26px; letter-spacing:.03em;
+  }
+  .status-line::before{ content:''; width:6px; height:6px; background:var(--teal); border-radius:50%; box-shadow:0 0 6px var(--teal); }
+
+  h1.name{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(38px,6vw,64px); line-height:1.05; letter-spacing:-0.02em;
+    color:#fff;
+  }
+  .role{
+    font-family:var(--font-mono); font-size:clamp(14px,2vw,17px); color:var(--amber);
+    margin-top:14px; letter-spacing:.02em;
+  }
+  .hero-desc{
+    max-width:560px; color:var(--muted); font-size:15.5px; margin-top:20px;
+  }
+  .hero-actions{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--font-mono); font-size:13px; padding:11px 20px; border-radius:6px;
+    border:1px solid var(--line); transition:all .15s; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{ background:var(--amber); color:#0A0F17; border-color:var(--amber); font-weight:600; }
+  .btn-primary:hover{ background:#ffc276; }
+  .btn-ghost{ color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--muted); }
+
+  /* ---------- packet flow signature element ---------- */
+  .pipeline{
+    margin-top:64px; border:1px solid var(--line); border-radius:10px;
+    background:var(--panel); padding:26px 26px 22px; overflow:hidden; position:relative;
+  }
+  .pipeline-label{ font-family:var(--font-mono); font-size:11px; color:var(--dim); letter-spacing:.08em; margin-bottom:18px; }
+  .pipeline-track{ position:relative; display:flex; justify-content:space-between; align-items:center; }
+  .pipeline-track::before{
+    content:''; position:absolute; left:14px; right:14px; top:50%; height:1px;
+    background:linear-gradient(90deg, var(--line), var(--teal), var(--line));
+    transform:translateY(-50%);
+  }
+  .pkt-node{ position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:10px; background:var(--panel); padding:0 6px; }
+  .pkt-dot{
+    width:12px; height:12px; border-radius:50%; background:var(--panel-2); border:2px solid var(--dim);
+  }
+  .pkt-node.active .pkt-dot{ border-color:var(--teal); background:var(--teal); box-shadow:0 0 10px var(--teal); }
+  .pkt-node span{ font-family:var(--font-mono); font-size:10.5px; color:var(--muted); text-align:center; white-space:nowrap; }
+  .packet{
+    position:absolute; top:50%; width:6px; height:6px; border-radius:50%; background:var(--amber);
+    box-shadow:0 0 8px var(--amber); transform:translateY(-50%);
+    animation: travel 3.4s linear infinite;
+  }
+  @keyframes travel{
+    0%{ left:14px; opacity:0; }
+    6%{ opacity:1; }
+    94%{ opacity:1; }
+    100%{ left:calc(100% - 14px); opacity:0; }
+  }
+
+  /* ---------- section shell ---------- */
+  section{ position:relative; padding:74px 0; border-top:1px solid var(--line); }
+  .sec-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:36px; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--dim); }
+  .sec-title{ font-family:var(--font-display); font-size:26px; font-weight:600; color:#fff; }
+
+  /* ---------- about ---------- */
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; }
+  @media(max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-text p{ color:var(--muted); font-size:15px; margin-bottom:14px; }
+  .about-text b{ color:var(--text); font-weight:600; }
+  .stat-card{
+    border:1px solid var(--line); border-radius:8px; padding:16px 18px; background:var(--panel);
+    margin-bottom:12px;
+  }
+  .stat-num{ font-family:var(--font-display); font-size:26px; font-weight:700; color:var(--amber); }
+  .stat-lbl{ font-family:var(--font-mono); font-size:11px; color:var(--muted); margin-top:2px; }
+
+  /* ---------- flagship project ---------- */
+  .flagship{
+    border:1px solid var(--line); border-radius:12px; background:var(--panel); overflow:hidden;
+  }
+  .flagship-head{ padding:26px 28px 0; }
+  .tag-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+  .tag{
+    font-family:var(--font-mono); font-size:10.5px; padding:4px 9px; border-radius:20px;
+    border:1px solid var(--line); color:var(--muted);
+  }
+  .flagship h3{ font-family:var(--font-display); font-size:22px; color:#fff; margin-bottom:10px; }
+  .flagship p.lead{ color:var(--muted); font-size:14.5px; max-width:640px; margin-bottom:22px; }
+
+  .diagram{
+    margin:0 28px 26px; border:1px solid var(--line); border-radius:8px; background:var(--panel-2);
+    padding:20px; font-family:var(--font-mono); font-size:12px; color:var(--muted);
+    overflow-x:auto; white-space:pre; line-height:1.9;
+  }
+  .diagram .stage{ color:var(--text); }
+  .diagram .arrow{ color:var(--dim); }
+  .diagram .hl{ color:var(--teal); }
+
+  .metrics-row{ display:flex; gap:0; border-top:1px solid var(--line); }
+  .metric{ flex:1; padding:18px 22px; border-right:1px solid var(--line); }
+  .metric:last-child{ border-right:none; }
+  .metric .val{ font-family:var(--font-mono); font-size:20px; color:var(--teal); font-weight:600; }
+  .metric .lbl{ font-family:var(--font-mono); font-size:10.5px; color:var(--dim); margin-top:4px; }
+
+  .flagship-body{ padding:24px 28px 28px; }
+  .flagship-body h4{ font-family:var(--font-mono); font-size:11.5px; color:var(--amber); letter-spacing:.04em; margin:18px 0 10px; }
+  .flagship-body h4:first-child{ margin-top:0; }
+  ul.check{ list-style:none; }
+  ul.check li{ position:relative; padding-left:20px; color:var(--muted); font-size:14px; margin-bottom:8px; }
+  ul.check li::before{ content:'▸'; position:absolute; left:0; color:var(--teal); }
+
+  /* ---------- timeline (experience) ---------- */
+  .timeline{ position:relative; padding-left:26px; }
+  .timeline::before{ content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .t-item{ position:relative; padding-bottom:32px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left:-26px; top:4px; width:10px; height:10px; border-radius:50%;
+    background:var(--panel); border:2px solid var(--amber);
+  }
+  .t-date{ font-family:var(--font-mono); font-size:11px; color:var(--dim); margin-bottom:4px; }
+  .t-title{ font-family:var(--font-display); font-size:16.5px; color:#fff; font-weight:600; }
+  .t-org{ font-family:var(--font-mono); font-size:12px; color:var(--amber); margin-top:2px; margin-bottom:8px; }
+  .t-desc{ color:var(--muted); font-size:14px; max-width:600px; }
+
+  /* ---------- project cards ---------- */
+  .proj-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+  @media(max-width:760px){ .proj-grid{ grid-template-columns:1fr; } }
+  .proj-card{
+    border:1px solid var(--line); border-radius:10px; padding:22px; background:var(--panel);
+    transition:border-color .15s, transform .15s;
+  }
+  .proj-card:hover{ border-color:var(--teal); transform:translateY(-2px); }
+  .proj-card h4{ font-family:var(--font-display); font-size:16px; color:#fff; margin-bottom:8px; }
+  .proj-card p{ color:var(--muted); font-size:13.5px; margin-bottom:14px; }
+  .proj-tags{ display:flex; gap:6px; flex-wrap:wrap; }
+  .proj-tags span{ font-family:var(--font-mono); font-size:10px; color:var(--dim); border:1px solid var(--line); padding:3px 8px; border-radius:4px; }
+
+  /* ---------- skills ---------- */
+  .skill-table{ border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .skill-row{ display:grid; grid-template-columns:170px 1fr; border-bottom:1px solid var(--line); }
+  .skill-row:last-child{ border-bottom:none; }
+  .skill-key{
+    font-family:var(--font-mono); font-size:11.5px; color:var(--amber); padding:16px 18px;
+    background:var(--panel-2); display:flex; align-items:center; letter-spacing:.02em;
+  }
+  .skill-val{ padding:16px 18px; color:var(--muted); font-size:13.5px; display:flex; align-items:center; }
+  @media(max-width:600px){ .skill-row{ grid-template-columns:1fr; } .skill-key{ padding-bottom:6px; } }
+
+  /* ---------- certifications ---------- */
+  .cert-list{ display:flex; flex-direction:column; gap:0; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .cert-item{
+    display:flex; justify-content:space-between; align-items:center; padding:15px 20px;
+    border-bottom:1px solid var(--line); font-size:13.5px;
+  }
+  .cert-item:last-child{ border-bottom:none; }
+  .cert-item .cname{ color:var(--text); }
+  .cert-item .cdate{ font-family:var(--font-mono); font-size:11px; color:var(--dim); white-space:nowrap; margin-left:20px; }
+
+  /* ---------- footer / contact ---------- */
+  footer{ border-top:1px solid var(--line); padding:60px 0 40px; }
+  .contact-title{ font-family:var(--font-display); font-size:30px; color:#fff; margin-bottom:14px; }
+  .contact-sub{ color:var(--muted); font-size:15px; margin-bottom:28px; max-width:480px; }
+  .contact-links{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px; }
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+    font-family:var(--font-mono); font-size:11px; color:var(--dim); padding-top:24px; border-top:1px solid var(--line);
+  }
+
+  @media(max-width:600px){
+    nav{ display:none; }
+    .metrics-row{ flex-wrap:wrap; }
+    .metric{ flex:1 1 50%; border-bottom:1px solid var(--line); }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="dot"></span> arip_munandar // status: open_to_work</div>
+    <nav>
+      <a href="#about">about</a>
+      <a href="#thesis">thesis</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="status-line">SYSTEM ONLINE — D4 TELECOMMUNICATIONS ENGINEERING, POLBAN, CLASS 3B-TTE</div>
+    <h1 class="name">Arip Munandar</h1>
+    <div class="role">Telecommunications Engineer — IoT Security &amp; Machine Learning</div>
+    <p class="hero-desc">
+      I build systems that watch networks and decide what to trust. My final thesis is a hybrid
+      Random&nbsp;Forest–LSTM intrusion detection system for MQTT IoT traffic, reaching ~92% accuracy
+      with a leak-free data pipeline — shipped end-to-end as a live API and dashboard, not just a notebook.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:munandararip67@gmail.com" class="btn btn-primary">contact_me →</a>
+      <a href="https://linkedin.com/in/aripmunandar" class="btn btn-ghost">linkedin ↗</a>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipeline-label">// PACKET FLOW — WHAT I DO, IN ORDER</div>
+      <div class="pipeline-track">
+        <div class="packet"></div>
+        <div class="pkt-node active"><div class="pkt-dot"></div><span>NETWORK<br>fundamentals</span></div>
+        <div class="pkt-node active"><div class="pkt-dot"></div><span>IoT<br>&amp; MQTT</span></div>
+        <div class="pkt-node active"><div class="pkt-dot"></div><span>ML<br>detection</span></div>
+        <div class="pkt-node active"><div class="pkt-dot"></div><span>API &amp;<br>dashboard</span></div>
+        <div class="pkt-node active"><div class="pkt-dot"></div><span>DEPLOYED<br>system</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title">About</span></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <b>D4 Telecommunications Engineering</b> graduate from <b>Politeknik Negeri Bandung (POLBAN)</b>,
+        with a GPA of <b>3.34/4.00</b>. My work sits at the intersection of network engineering, IoT systems,
+        and applied machine learning — I like problems where you have to understand the traffic before you
+        can decide anything about it.</p>
+        <p>My final thesis tackled a flaw I found in a published IEEE Access intrusion-detection paper
+        (data leakage from improper scaling order) and fixed it with a stricter pipeline, then built a
+        full hybrid ML system around it — from raw packets to a live monitoring dashboard.</p>
+        <p>Alongside that, I've interned in both <b>telco operations</b> (PT Telkom Indonesia) and
+        <b>web development</b> (Cyberlabs), and I'm CCNA-certified across all three modules.</p>
+      </div>
+      <div>
+        <div class="stat-card"><div class="stat-num">~92%</div><div class="stat-lbl">THESIS MODEL ACCURACY</div></div>
+        <div class="stat-card"><div class="stat-num">3.34</div><div class="stat-lbl">GPA / 4.00</div></div>
+        <div class="stat-card"><div class="stat-num">3×</div><div class="stat-lbl">CCNA CERTIFICATIONS</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLAGSHIP THESIS -->
+  <section id="thesis">
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">Flagship Project — Final Thesis</span></div>
+
+    <div class="flagship">
+      <div class="flagship-head">
+        <div class="tag-row">
+          <span class="tag">machine learning</span>
+          <span class="tag">network security</span>
+          <span class="tag">iot / mqtt</span>
+          <span class="tag">flask api</span>
+          <span class="tag">node-red</span>
+        </div>
+        <h3>Hybrid RF-LSTM Intrusion Detection System for MQTT IoT Traffic</h3>
+        <p class="lead">
+          A DDoS detection system for IoT network traffic combining an LSTM encoder for temporal features
+          with a Random Forest classifier for the final decision — validated with a leakage-free
+          methodology that directly corrects a flaw in Ahmim et al. (2023, IEEE Access).
+        </p>
+      </div>
+
+      <div class="diagram">
+<span class="stage">Raw IoT traffic</span> <span class="arrow">(CICDDoS2019: SYN, UDP, UDPLag, LDAP)</span>
+  <span class="arrow">│</span>
+  <span class="arrow">▼</span>
+<span class="stage">Preprocessing</span>  <span class="hl">split → scale (train-only) → sequence per attack type</span>
+  <span class="arrow">│</span>
+  <span class="arrow">▼</span>
+<span class="stage">LSTM Encoder</span>  <span class="arrow">(32 units, BatchNorm)</span>  <span class="hl">— temporal feature extraction</span>
+  <span class="arrow">│</span>
+  <span class="arrow">▼</span>
+<span class="stage">Random Forest</span>  <span class="hl">— final benign / attack classification</span>
+  <span class="arrow">│</span>
+  <span class="arrow">▼</span>
+<span class="stage">Flask REST API</span>  <span class="arrow">(/predict · /status · /reset)</span>  <span class="arrow">→</span>  <span class="stage">Node-RED dashboard</span>
+      </div>
+
+      <div class="metrics-row">
+        <div class="metric"><div class="val">92.10%</div><div class="lbl">BEST MODEL (EXP_01)</div></div>
+        <div class="metric"><div class="val">4</div><div class="lbl">ATTACK CLASSES COVERED</div></div>
+        <div class="metric"><div class="val">3</div><div class="lbl">ARCHITECTURE EXPERIMENTS</div></div>
+        <div class="metric"><div class="val">E2E</div><div class="lbl">DATA → API → DASHBOARD</div></div>
+      </div>
+
+      <div class="flagship-body">
+        <h4>// WHY THE METHODOLOGY MATTERS</h4>
+        <ul class="check">
+          <li>Split-before-scaling — scaler fit only on training data, never on test/validation</li>
+          <li>Per-attack-type sequencing — prevents temporal contamination across files</li>
+          <li>Inference-time safety — infinite values zeroed, scaled values clipped to [0,1]</li>
+        </ul>
+        <h4>// SYSTEM STATUS</h4>
+        <ul class="check">
+          <li>Preprocessing pipeline — complete</li>
+          <li>Model training &amp; evaluation — complete, 3 experiments run</li>
+          <li>Flask REST API + Node-RED dashboard — complete, live MQTT integration</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title">Experience</span></div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-date">JUN 2024 — AUG 2024</div>
+        <div class="t-title">Helper, Customer Service Division</div>
+        <div class="t-org">PT Telkom Indonesia (Persero) Tbk — Telkom Regional 2</div>
+        <div class="t-desc">Used APIs to identify and prospect enterprise clients for Indibiz; designed and built a CRM system prototype to streamline sales workflows.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">AUG 2021 — OCT 2022</div>
+        <div class="t-title">IT Support</div>
+        <div class="t-org">Cyberlabs</div>
+        <div class="t-desc">Built a PHP/Laravel/Bootstrap web app with full CRUD functionality; authored daily technology-focused articles on WordPress.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">NOV 2024 — FEB 2026</div>
+        <div class="t-title">Senior Staff, Supervisory Commission III (MPH)</div>
+        <div class="t-org">HIMATEL POLBAN</div>
+        <div class="t-desc">Supervised and evaluated organizational work programs; mentored junior staff in supervisory duties.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">APR 2024 — JAN 2025</div>
+        <div class="t-title">Junior Staff, Visual Communication Division (KOMINFO)</div>
+        <div class="t-org">BEM KEMA POLBAN</div>
+        <div class="t-desc">Produced creative content (Photoshop, Canva) for Instagram; built teamwork and project management skills.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER PROJECTS -->
+  <section id="projects">
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title">Other Projects</span></div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <h4>Smartphone Addiction Classifier</h4>
+        <p>Random Forest classifier on a 7,500-row Kaggle dataset with GridSearchCV tuning and a full evaluation pipeline, delivered as a Colab/Kaggle notebook.</p>
+        <div class="proj-tags"><span>python</span><span>scikit-learn</span><span>gridsearchcv</span></div>
+      </div>
+      <div class="proj-card">
+        <h4>PyTorch Deep Learning Practicum</h4>
+        <p>Linear regression and MNIST digit classification, documented in a full Bahasa Indonesia lab report grounded in real notebook output.</p>
+        <div class="proj-tags"><span>pytorch</span><span>deep learning</span></div>
+      </div>
+      <div class="proj-card">
+        <h4>Bluetooth Jamming Device</h4>
+        <p>A 2.4 GHz signal interference device disrupting Bluetooth communication, applying RF and wireless communication fundamentals.</p>
+        <div class="proj-tags"><span>rf</span><span>wireless</span></div>
+      </div>
+      <div class="proj-card">
+        <h4>Digital Electronics Scoreboard</h4>
+        <p>A 4-bit BCD up/down counter scoreboard built on IC 74192 with manual control logic.</p>
+        <div class="proj-tags"><span>digital circuits</span><span>ic 74192</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-head"><span class="sec-num">05</span><span class="sec-title">Skills</span></div>
+    <div class="skill-table">
+      <div class="skill-row"><div class="skill-key">ML / DATA</div><div class="skill-val">Python, Scikit-learn, TensorFlow/Keras, Pandas, data pipeline design</div></div>
+      <div class="skill-row"><div class="skill-key">NETWORKING</div><div class="skill-val">Cisco Packet Tracer, routing &amp; switching, wireless &amp; security essentials</div></div>
+      <div class="skill-row"><div class="skill-key">IoT / EMBEDDED</div><div class="skill-val">Arduino IDE, MQTT, Node-RED, microcontrollers, Proteus, circuit design</div></div>
+      <div class="skill-row"><div class="skill-key">WEB DEV</div><div class="skill-val">PHP (Laravel), Bootstrap, WordPress, Flask (REST API)</div></div>
+      <div class="skill-row"><div class="skill-key">SYSTEMS / DB</div><div class="skill-val">PostgreSQL, MySQL, DBeaver, Windows, Linux (Ubuntu, Debian)</div></div>
+      <div class="skill-row"><div class="skill-key">TOOLS</div><div class="skill-val">Git, Jupyter/Colab, Microsoft Office, Adobe Photoshop, Canva</div></div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certs">
+    <div class="sec-head"><span class="sec-num">06</span><span class="sec-title">Certifications</span></div>
+    <div class="cert-list">
+      <div class="cert-item"><span class="cname">CCNAv7: Enterprise Networking, Security, and Automation — Cisco Networking Academy</span><span class="cdate">JUL 2025</span></div>
+      <div class="cert-item"><span class="cname">CCNAv7: Switching, Routing, and Wireless Essentials — Cisco Networking Academy</span><span class="cdate">JAN 2025</span></div>
+      <div class="cert-item"><span class="cname">CCNAv7: Introduction to Networks — Cisco Networking Academy</span><span class="cdate">AUG 2024</span></div>
+      <div class="cert-item"><span class="cname">HIMATEL POLBAN Leadership School — Participant</span><span class="cdate">NOV 2024</span></div>
+      <div class="cert-item"><span class="cname">POLBAN Student Management Skills Training (LKMM-TD) — Participant</span><span class="cdate">OCT 2023</span></div>
+      <div class="cert-item"><span class="cname">English — TOEIC Score: 620 (International Test Center)</span><span class="cdate">MAY 2026</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-title">Let's talk.</div>
+    <p class="contact-sub">Open to roles in network engineering, IoT/cybersecurity, or ML engineering. Based in Bandung, Jawa Barat — open to relocation.</p>
+    <div class="contact-links">
+      <a href="mailto:munandararip67@gmail.com" class="btn btn-primary">munandararip67@gmail.com</a>
+      <a href="https://linkedin.com/in/aripmunandar" class="btn btn-ghost">linkedin.com/in/aripmunandar ↗</a>
+      <a href="tel:+6289646612190" class="btn btn-ghost">+62 896 4661 2190</a>
+    </div>
+    <div class="foot-bottom">
+      <span>arip_munandar // built with intent, not a template</span>
+      <span>bandung, jawa barat, id</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
