@@ -194,6 +194,14 @@
     .hero h1{font-size:clamp(42px,12vw,60px);}
   }
 </style>
+<style>
+.project-details-section{margin-top:2rem}
+.project-detail-card{margin:1.25rem 0}
+.project-detail-scroll{max-height:300px;overflow-y:auto;padding:1.25rem 1.4rem;border:1px solid rgba(127,127,127,.25);border-radius:14px;line-height:1.75}
+.project-detail-scroll::-webkit-scrollbar{width:8px}
+.project-detail-scroll::-webkit-scrollbar-thumb{border-radius:8px;background:rgba(127,127,127,.4)}
+</style>
+
 </head>
 <body>
 
@@ -398,7 +406,7 @@
       </div>
       <div class="proj-card">
         <h4>Smartphone Addiction Classifier</h4>
-        <p><strong>Tuned a Random Forest classifier to 93% accuracy</strong> on a 7,500-row behavioral dataset using systematic hyperparameter search. This Machine Learning &amp; AI course project uses a Kaggle dataset of smartphone usage behavior labeled for addiction risk and treats the task as binary classification.</p>
+        <p>Tuned a Random Forest classifier to <strong>93% accuracy</strong> on a 7,500-row behavioral dataset using systematic hyperparameter search. The project covers the full ML pipeline: exploratory data analysis, preprocessing, GridSearchCV tuning, and evaluation using accuracy, precision, recall, and F1-score.</p>
         <p>The pipeline covered exploratory data analysis to understand feature distributions and class balance, preprocessing including categorical encoding and scaling where needed, and hyperparameter tuning via GridSearchCV across parameters such as number of estimators, max depth, and minimum samples per split. The tuned model was evaluated on a held-out test set using accuracy, precision, recall, and F1-score rather than accuracy alone.</p>
         <p>The project was delivered as a single, reproducible Jupyter notebook designed to run cleanly in Google Colab or Kaggle, with every cell running top-to-bottom without hidden state and a self-contained evaluation section for independent verification.</p>
         <p><strong>What this demonstrates:</strong> this project sits at the "fundamentals" end of my ML work — the same split/scale/evaluate discipline shows up again, more rigorously, in the thesis. It's the smaller version of the same habit.</p>
