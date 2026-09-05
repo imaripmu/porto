@@ -398,55 +398,97 @@
       <h2>Applied work across RF, IoT, and ML</h2>
     </div>
     <div class="proj-grid">
+
       <div class="proj-card">
         <h4>JAVATAMA  -  Fiber Optic Network Revitalization Proposal</h4>
-        <p>Group project for the Project Management course: a full procurement &amp; project proposal for fiber optic cable revitalization at POLBAN's Geger Kalong campus  -  GPON technology, 1 Gbps upgradeable to 10 Gbps, underground routing, and a 115-day WBS schedule from OLT to acceptance testing. Served as Account Executive on the team.</p>
+        <div class="project-detail-scroll">
+          <p><strong>Designed a 115-day, end-to-end fiber network rollout plan — from OLT provisioning to endpoint acceptance testing — for an entire campus network.</strong></p>
+          <p>As part of the Project Management course, our team was tasked with producing a full procurement and implementation proposal for revitalizing the fiber optic backbone at POLBAN's Geger Kalong campus. The existing network could no longer support growing academic bandwidth demands, so the proposal specified a shift to GPON technology delivering 1 Gbps per connection, upgradeable to 10 Gbps without re-cabling.</p>
+          <p>I worked as Account Executive, which meant translating technical requirements into a client-facing narrative: background, problem statement, and scope of work that a non-technical stakeholder (campus management) could approve. The technical scope itself was broken into five phases — OLT provisioning, feeder interconnection (STO to ODC), distribution branching (ODC to ODP across campus buildings), drop-core delivery to individual rooms, and final acceptance testing — each with its own work breakdown structure and duration, totaling 115 calendar days from SPK issuance.</p>
+          <p>The network design itself specified underground fiber routing, SC connectors, and a single joint closure point, mapped against the actual campus layout — including per-building ONT placement across labs, lecture halls, and administrative buildings. Beyond the technical spec, the proposal included an "Outside-In" market analysis identifying the demand signals (rising device density, need for high-speed academic connectivity) that justified the investment.</p>
+          <p><strong>What this demonstrates:</strong> the ability to scope a real infrastructure project — not just design the network, but plan its delivery, sequence its phases, and communicate it to people who don't care about GPON but do care about downtime and cost.</p>
+        </div>
         <div class="proj-tags"><span>project management</span><span>fiber optic / gpon</span><span>network design</span></div>
         <div class="doc-slot"><span class="doc-label">Documentation</span><div class="doc-thumbs" data-doc-group="javatama"></div></div>
       </div>
+
       <div class="proj-card">
         <h4>Smartphone Addiction Classifier</h4>
-        <p>Tuned a Random Forest classifier to <strong>93% accuracy</strong> on a 7,500-row behavioral dataset using systematic hyperparameter search. The project covers the full ML pipeline: exploratory data analysis, preprocessing, GridSearchCV tuning, and evaluation using accuracy, precision, recall, and F1-score.</p>
-        <p>The pipeline covered exploratory data analysis to understand feature distributions and class balance, preprocessing including categorical encoding and scaling where needed, and hyperparameter tuning via GridSearchCV across parameters such as number of estimators, max depth, and minimum samples per split. The tuned model was evaluated on a held-out test set using accuracy, precision, recall, and F1-score rather than accuracy alone.</p>
-        <p>The project was delivered as a single, reproducible Jupyter notebook designed to run cleanly in Google Colab or Kaggle, with every cell running top-to-bottom without hidden state and a self-contained evaluation section for independent verification.</p>
-        <p><strong>What this demonstrates:</strong> this project sits at the "fundamentals" end of my ML work — the same split/scale/evaluate discipline shows up again, more rigorously, in the thesis. It's the smaller version of the same habit.</p>
+        <div class="project-detail-scroll">
+          <p><strong>Tuned a Random Forest classifier to 93% accuracy on a 7,500-row behavioral dataset using systematic hyperparameter search.</strong></p>
+          <p>This was a course project for Machine Learning &amp; AI, built around a Kaggle dataset of smartphone usage behavior labeled for addiction risk. The goal was binary classification — flagging risky usage patterns — but I treated it as an exercise in doing the full pipeline properly rather than just fitting a model and reporting a number.</p>
+          <p>The pipeline covered exploratory data analysis to understand feature distributions and class balance, preprocessing (handling categorical encoding and scaling where needed), and then hyperparameter tuning via GridSearchCV across parameters like number of estimators, max depth, and minimum samples per split. I evaluated the tuned model against a held-out test set using accuracy, precision, recall, and F1-score rather than accuracy alone, since class imbalance in behavioral datasets like this can make raw accuracy misleading.</p>
+          <p>The whole thing was delivered as a single, reproducible Jupyter notebook designed to run cleanly in Google Colab or Kaggle — meaning every cell runs top-to-bottom without hidden state, and the evaluation section is self-contained so results can be verified independently.</p>
+          <p><strong>What this demonstrates:</strong> this project sits at the "fundamentals" end of my ML work — the same split/scale/evaluate discipline shows up again, more rigorously, in the thesis. It's the smaller version of the same habit.</p>
+        </div>
         <div class="proj-tags"><span>python</span><span>scikit-learn</span><span>random forest</span><span>gridsearchcv</span><span>93% accuracy</span></div>
         <div class="doc-slot"><span class="doc-label">Documentation</span><div class="doc-thumbs" data-doc-group="smartphone-ml"></div></div>
       </div>
+
       <div class="proj-card">
         <h4>Helm Glow  -  IoT Helmet Sterilization Device</h4>
-        <p>Co-developed an IoT-based helmet sterilization device combining humidifier disinfectant mist and 254nm UV-C light to eliminate bacteria, viruses, and odor in 5 - 10 minutes. Group entrepreneurship project linking smart-device technology to telecommunications engineering; served as Finance Manager while helping build the prototype.</p>
+        <div class="project-detail-scroll">
+          <p><strong>Co-built a working prototype that sterilizes a motorcycle helmet in 5–10 minutes using UV-C light and antiseptic vapor, controlled through an IoT system.</strong></p>
+          <p>Helm Glow was a group entrepreneurship project, but the technical core of it was a real embedded systems problem: how do you sterilize the inside of a helmet — a closed, oddly-shaped, moisture-sensitive space — without damaging the material or requiring the user to do anything beyond pressing a button?</p>
+          <p>The solution combines two sterilization mechanisms working together. A 254nm UV-C light source breaks down the DNA structure of bacteria, viruses, and fungi that accumulate inside a helmet from sweat and prolonged use — this handles surface-level pathogens on the foam padding and shell interior. In parallel, a humidifier-based system generates an antiseptic vapor that reaches into seams and padding gaps UV light can't directly hit, neutralizing odor-causing microbes and giving the option to add essential oils for scent. The full cycle — humidification, sterilization, and drying — is timed automatically, so the entire process from start to finish takes 5 to 10 minutes with zero manual monitoring.</p>
+          <p>My role was Finance Manager for the venture side (costing, competitive pricing, unit economics for a campus market), but I was also hands-on in building the physical prototype alongside the team — meaning I worked through both the business case (is this viable to sell at POLBAN) and the engineering constraints (does the timer logic actually shut off UV exposure safely, does the vapor distribute evenly) rather than just one or the other.</p>
+          <p><strong>What this demonstrates:</strong> IoT isn't only about data pipelines — it's also about controlling physical processes (light exposure time, vapor duration) reliably and safely, which is a different kind of rigor than model tuning.</p>
+        </div>
         <div class="proj-tags"><span>iot</span><span>product development</span><span>entrepreneurship</span></div>
         <div class="doc-slot"><span class="doc-label">Documentation</span><div class="doc-thumbs" data-doc-group="helm-glow"></div></div>
       </div>
+
       <div class="proj-card">
         <h4>Microstrip Antenna Design (SDR-10)</h4>
-        <p>Designed and simulated a rectangular microstrip antenna with inset-feed and U-slot techniques to improve impedance matching and bandwidth for 3700 - 4800 MHz operation, simulated in CST Studio Suite. Final project for Antenna &amp; Propagation, Telecommunications Engineering.</p>
+        <div class="project-detail-scroll">
+          <p><strong>Designed and simulated a rectangular microstrip antenna operating at 3700–4800 MHz, using a U-slot modification to improve bandwidth beyond the baseline design.</strong></p>
+          <p>This was my final project for Antenna &amp; Propagation. The brief was to design a patch antenna for the SDR-10 frequency band using inset-feed and U-slot techniques — two well-known but non-trivial methods for tuning antenna performance without changing its physical footprint.</p>
+          <p>The design process started with calculating patch, substrate, and ground plane dimensions from the target frequency and dielectric properties of the substrate material — arriving at a 21.60 × 16.50 mm patch on a 31.20 × 26.00 mm substrate. The inset-feed technique controls impedance matching by adjusting how far the feed line cuts into the patch, avoiding the need for an external matching network. The U-slot, cut into the patch itself, is what actually extends the antenna's usable bandwidth — without it, a simple rectangular patch has a narrow resonant band that's hard to keep the device operating reliably across the full target range.</p>
+          <p>I simulated both versions — with and without the U-slot — in CST Studio Suite, comparing return loss (S11), bandwidth, and radiation pattern between the two. The comparison is the actual point of the project: it's not enough to say "I designed an antenna," the value is in showing quantitatively that the U-slot modification measurably widened the operating bandwidth compared to the unmodified patch.</p>
+          <p><strong>What this demonstrates:</strong> RF design at the physical layer — the layer underneath every wireless protocol I work with in IoT and networking. Understanding why a signal propagates the way it does is foundational to everything above it in the stack.</p>
+        </div>
         <div class="proj-tags"><span>antenna design</span><span>rf engineering</span><span>cst studio suite</span></div>
         <div class="doc-slot"><span class="doc-label">Documentation</span><div class="doc-thumbs" data-doc-group="antenna"></div></div>
       </div>
+
       <div class="proj-card">
-        <h4>Microcontroller-Based IoT Projects</h4>
-        <p>Arduino-based IoT projects covering sensor integration and microcontroller programming for embedded applications.</p>
-        <div class="proj-tags"><span>arduino</span><span>microcontroller</span><span>iot</span></div>
+        <h4>Microcontroller-Based IoT Projects  -  Distance Measurement (VLC)</h4>
+        <div class="project-detail-scroll">
+          <p><strong>Designed and prototyped a smart door lock system based on Visible Light Communication (VLC), combining an HC-SR04 ultrasonic sensor and an LDR module to detect light-based codes for door access authentication.</strong></p>
+          <p>This was our coursework project for Microcontroller &amp; IoT at POLBAN. The brief was to build a distance-sensing and light-based communication system using an Arduino Uno — two complementary approaches: an ultrasonic sensor for real-time distance sensing, and an LDR (Light Dependent Resistor) acting as a receiver for light signals transmitted from a smartphone.</p>
+          <p>The design process started on the distance-sensing side: the HC-SR04 emits an ultrasonic pulse and measures its reflection time to calculate object distance in centimeters, with the result displayed on a 16x2 LCD via an I2C interface — chosen specifically to simplify the data lines between the LCD and microcontroller and reduce pin usage. On the VLC side, the technique used is light-duration modulation: the user activates their smartphone's flashlight for a specific duration as a "code" or "password," which is then picked up by the LDR through a voltage-divider circuit on one of the Arduino's analog pins.</p>
+          <p>I designed two interconnected subsystems — a TX path (ultrasonic sensor + LED as a light source/indicator) and an RX path (LDR + Arduino + LCD) — and tested both in a circuit-level simulation using real component models (Arduino Uno, HC-SR04, LDR module, PCF8574 I2C expander). The comparison between these two subsystems is the actual point of the project: it's not just "build a distance meter," but demonstrating how two fundamentally different sensing modalities — acoustic (ultrasonic) and optical (VLC/LDR) — can be integrated into a single Arduino logic flow to deliver both a security function (code validation) and a measurement function (distance display) at the same time.</p>
+          <p><strong>What this demonstrates:</strong> embedded system design at the physical layer — the foundation underneath every more complex IoT application. Understanding how acoustic and optical sensing actually work at the hardware level is what makes more advanced automation and security systems possible on top of it.</p>
+        </div>
+        <div class="proj-tags"><span>arduino</span><span>microcontroller</span><span>iot</span><span>vlc</span></div>
         <div class="doc-slot"><span class="doc-label">Documentation</span><div class="doc-thumbs" data-doc-group="microcontroller"></div></div>
       </div>
+
       <div class="proj-card">
         <h4>Bluetooth Jamming Device</h4>
-        <p>A 2.4 GHz signal interference device disrupting Bluetooth communication, applying RF and wireless communication fundamentals.</p>
+        <div class="project-detail-scroll">
+          <p><strong>Built a 2.4 GHz signal interference device to study how Bluetooth communication degrades under RF noise.</strong></p>
+          <p>This project applied core wireless communication principles by building a device that generates interference in the 2.4 GHz ISM band — the same frequency range Bluetooth, Wi-Fi, and many IoT protocols operate in. The goal wasn't malicious disruption but understanding, from the transmitter side, how shared-spectrum wireless protocols behave when the channel is noisy: how Bluetooth's frequency-hopping spread spectrum responds to interference, and at what point communication reliably breaks down.</p>
+          <p><strong>What this demonstrates:</strong> understanding wireless communication from an adversarial or stress-testing angle — the same mindset that matters for security work, where you need to think about how a system fails, not just how it works when everything is clean.</p>
+        </div>
         <div class="proj-tags"><span>rf</span><span>wireless</span></div>
         <div class="doc-slot"><span class="doc-label">Documentation</span><div class="doc-thumbs" data-doc-group="bluetooth-jammer"></div></div>
       </div>
+
       <div class="proj-card">
         <h4>Digital Electronics Scoreboard</h4>
-        <p>A 4-bit BCD up/down counter scoreboard built on IC 74192 with manual control logic.</p>
+        <div class="project-detail-scroll">
+          <p><strong>Designed a 4-bit BCD up/down counter scoreboard using pure digital logic — no microcontroller involved.</strong></p>
+          <p>Built around the IC 74192, a synchronous up/down BCD decade counter, this project implements scoreboard logic entirely in discrete digital circuitry rather than software. The control logic handles manual increment and decrement inputs, decade counting (0–9 with carry/borrow between digits), and output display — all through gate-level and IC-level design rather than a programmed microcontroller.</p>
+          <p><strong>What this demonstrates:</strong> foundational digital logic — the layer beneath every microcontroller and embedded system I've since worked with. It's the project that explains why the later IoT and embedded work makes sense; you can't reason well about what a microcontroller is doing internally without having built the equivalent logic by hand at least once.</p>
+        </div>
         <div class="proj-tags"><span>digital circuits</span><span>ic 74192</span></div>
         <div class="doc-slot"><span class="doc-label">Documentation</span><div class="doc-thumbs" data-doc-group="digital-scoreboard"></div></div>
       </div>
     </div>
   </div>
 </section>
-
+  
 <section id="skills">
   <div class="wrap">
     <div class="sec-head">
