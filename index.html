@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arip Munandar  -  Telecommunications & IoT Security Engineer</title>
+<h1>Arip Munandar<em>Telecommunication Engineering Graduate | Network &amp; IT Infrastructure</em></h1>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -185,7 +185,13 @@
     .stat:last-child{border-bottom:none;}
     .stat-mini-row{grid-template-columns:repeat(2,1fr);}
     .tl-item{grid-template-columns:1fr; gap:24px;}
-    .doc-thumbs, .flagship-card .doc-thumbs, .tl-item .doc-thumbs, .proj-card .doc-thumbs{grid-template-columns:1fr;}
+    .doc-thumbs,
+    .flagship-card .doc-thumbs,
+    .tl-item .doc-thumbs,
+    .proj-card .doc-thumbs {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
     .contact-box{padding:32px;}
     section{padding:60px 0;}
     .hero-layout{grid-template-columns:1fr; gap:34px;}
@@ -214,6 +220,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Certifications</a></li>
       <li><a href="#gallery">Documentation</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -228,8 +235,12 @@
         <div class="hero-top">
           <div class="hero-eyebrow">D3 Telecommunications Engineering  -  Politeknik Negeri Bandung, Class of 2026</div>
         </div>
-        <h1>Arip Munandar<em>Telecommunications &amp; IoT Security Engineer</em></h1>
-        <p class="role">I design and secure the networks IoT devices run on - from RF hardware up through the ML models that decide whether a packet is safe.</p>
+        <h1>Arip Munandar<em>Telecommunication Engineering Graduate | Network &amp; IT Infrastructure</em></h1>
+        <p class="role">
+          A Telecommunication Engineering graduate with hands-on experience in network installation,
+          router configuration, SD-WAN upgrade support, and technical operations. Interested in
+          network infrastructure, service support, and IoT-based systems.
+        </p>
         <div class="hero-cta">
           <a class="btn primary" href="mailto:munandararip67@gmail.com">Get in touch</a>
           <a class="btn ghost" href="https://linkedin.com/in/aripmunandar" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -242,7 +253,9 @@
 
     <div class="stat-row">
       <div class="stat"><div class="stat-num">3.34</div><div class="stat-label">GPA / 4.00</div></div>
-      <div class="stat"><div class="stat-num">3×</div><div class="stat-label">CCNA certifications</div></div>
+      <div class="stat">
+      <div class="stat-num">3×</div>
+      <div class="stat-label">Cisco Networking Academy Course Certificates</div></div>
       <div class="stat"><div class="stat-num">620</div><div class="stat-label">TOEIC score</div></div>
     </div>
   </div>
@@ -256,10 +269,34 @@
     </div>
     <div class="about-grid">
       <div>
-        <p>I graduated in Telecommunications Engineering from Politeknik Negeri Bandung, but most of what I've built lives at the boundary between three fields: RF (how signals move), IoT (how devices talk), and security (how you tell an attack from noise)</p>
-        <p>My thesis started as a replication of a published intrusion-detection paper - and turned into a correction of it. I found a data-leakage flaw in Ahmim et al. (2023, IEEE Access) and rebuilt their pipeline with a stricter train/test split, then extended it into a hybrid LSTM-Random Forest model that runs end-to-end: from raw MQTT traffic to a live alert dashboard.</p>
-        <p>Beyond the thesis, I focused on networking and physical hardware - holding CCNA certifications, interning at Telkom Enterprise, designing microstrip antennas in CST Studio, and building IoT projects with Arduino. I now work hands-on as a freelance network engineer on SD-WAN router deployments. My programming foundation goes back to vocational high school (SMK), where I earned a BNSP software development competency certification in 2022.</p>
+        <div>
+        <p>
+          I am a Telecommunication Engineering graduate from Politeknik
+          Negeri Bandung with an interest in network engineering, IT
+          infrastructure, and technical operations. My academic background
+          and practical experience have provided a foundation in networking,
+          hardware, and system development.
+        </p>
+      
+        <p>
+          My practical experience includes supporting a Cisco SD-WAN router
+          OS upgrade, installing and configuring network devices, and
+          troubleshooting connectivity issues. During my internship at
+          PT Telkom Indonesia, I also supported enterprise prospect data
+          management through API utilization and developed a CRM prototype
+          to support operational workflows.
+        </p>
+      
+        <p>
+          Beyond professional experience, I have developed academic projects
+          involving GPON network planning, IoT systems, RF antenna simulation,
+          and machine learning-based intrusion detection. I value continuous
+          learning, teamwork, and practical problem-solving, and I am eager
+          to contribute to network infrastructure and technical support
+          environments.
+        </p>
       </div>
+    </div>
       <div class="pipeline">
         <div class="pipe-step"><div class="k">Network fundamentals</div><div class="v">CCNA  -  routing, switching, wireless &amp; security</div></div>
         <div class="pipe-step"><div class="k">Field networking</div><div class="v">SD-WAN router deployment, console access, remote-assisted upgrades</div></div>
@@ -276,7 +313,7 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">02  -  Flagship Project · Final Thesis</span>
-      <h2>Hybrid LSTM - RF Intrusion Detection for MQTT IoT Traffic</h2>
+      <h2>Hybrid LSTM–Random Forest Intrusion Detection for IoT Network Traffic</h2>
     </div>
     <div class="flagship-card">
       <div class="tag-row">
@@ -287,8 +324,12 @@
         <span class="tag">node-red</span>
       </div>
       <h3>Final thesis - "Perancangan Sistem Deteksi Intrusi pada Trafik IoT Berbasis MQTT dan Node-RED Menggunakan Model Hybrid LSTM - Random Forest"</h3>
-      <p>A DDoS detection system for IoT network traffic combining an LSTM encoder for temporal features with a Random Forest classifier for the final decision  -  validated with a leakage-free methodology that directly corrects a flaw in Ahmim et al. (2023, IEEE Access).</p>
-
+      <p>
+        An intrusion detection system designed to classify benign and DDoS traffic
+        using a hybrid LSTM–Random Forest approach. The model was evaluated using
+        CICDDoS2019 traffic data and integrated with a Flask REST API and Node-RED
+        dashboard for monitoring and visualization in an MQTT-based IoT environment.
+      </p>
       <div class="flow-diagram">
         <div class="row"><span class="box">Raw IoT traffic (CICDDoS2019: SYN, UDP, UDPLag, LDAP)</span></div>
         <div class="row"><span class="arrow">↓</span></div>
@@ -343,10 +384,17 @@
     <div class="timeline">
       <div class="tl-item">
         <div class="tl-main">
-          <div class="tl-date">Oct 2026  -  Present</div>
+          <div class="tl-date">Oct 2026</div>
           <div class="tl-role">Freelance Network Engineer (Field Engineer, SD-WAN)</div>
           <div class="tl-org">SD-WAN Router Upgrade Project  -  Mastersystem Infotama (MSI) Team</div>
-          <div class="tl-desc">Handled the layer 1 (physical) side of an SD-WAN router OS upgrade project for a banking client, covering branches and mobile cash units. Prepared FAT32 USB drives with the firmware image, connected to Cisco C1121X-8P routers onsite via console cable, and accompanied the head-office team through each remote upgrade. After every upgrade I tested all user applications on the end-user laptop and waited for the HO engineer's final cross-check. Coordinated through Microsoft Teams and produced a timesheet and work documentation report for each visit.</div>
+          <div class="tl-desc">
+           Supported an onsite OS upgrade of a Cisco C1121X-8P SD-WAN router
+          installed in a national bank's mobile cash van as part of a pilot project.
+          Prepared FAT32 USB drives containing firmware files and supporting
+          equipment, established console connections, and coordinated with the
+          head-office engineering team during the remote upgrade process.
+          After the upgrade, performed application testing on the end-user laptop
+          and documented the activities through timesheets and work reports.</div>
         </div>
         <div class="tl-doc">
           <div class="doc-slot"><span class="doc-label">Documentation</span><div class="doc-thumbs" data-doc-group="freelance"></div></div>
@@ -367,7 +415,7 @@
 
       <div class="tl-item">
         <div class="tl-main">
-          <div class="tl-date">Aug 2021  -  Oct 2022</div>
+          <div class="tl-date">Aug 2021  -  Oct 2021</div>
           <div class="tl-role">IT Support</div>
           <div class="tl-org">Cyberlabs</div>
           <div class="tl-desc">Worked as IT support for about a year, covering both development and content work. Built a web application with PHP, the Laravel framework, and Bootstrap, implementing full CRUD (create, read, update, delete) functionality with a responsive interface. In parallel, wrote and published daily technology-focused articles on WordPress, which built my habit of researching a topic quickly and explaining it clearly. This was my first hands-on exposure to the full cycle of shipping a small web product, from database design to the user-facing page.</div>
@@ -439,9 +487,15 @@
       </div>
 
       <div class="proj-card">
-        <h4>Helm Glow  -  IoT Helmet Sterilization Device</h4>
+        <h4>Helm Glow – IoT-Based Helmet Hygiene Prototype</h4>
         <div class="project-detail-scroll">
-          <p><strong>Co-built a working prototype that sterilizes a motorcycle helmet in 5–10 minutes using UV-C light and antiseptic vapor, controlled through an IoT system.</strong></p>
+         <p>
+          <strong>
+              Co-developed an IoT-based helmet hygiene prototype using UV-C
+              lighting and an antiseptic vapor mechanism, with an automated
+              5–10 minute operating cycle.
+            </strong>
+          </p>
           <p>Helm Glow was a group entrepreneurship project, but the technical core of it was a real embedded systems problem: how do you sterilize the inside of a helmet- a closed, oddly-shaped, moisture-sensitive space- without damaging the material or requiring the user to do anything beyond pressing a button?</p>
           <p>The solution combines two sterilization mechanisms working together. A 254nm UV-C light source breaks down the DNA structure of bacteria, viruses, and fungi that accumulate inside a helmet from sweat and prolonged use- this handles surface-level pathogens on the foam padding and shell interior. In parallel, a humidifier-based system generates an antiseptic vapor that reaches into seams and padding gaps UV light can't directly hit, neutralizing odor-causing microbes and giving the option to add essential oils for scent. The full cycle- humidification, sterilization, and drying- is timed automatically, so the entire process from start to finish takes 5 to 10 minutes with zero manual monitoring.</p>
           <p>My role was Finance Manager for the venture side (costing, competitive pricing, unit economics for a campus market), but I was also hands-on in building the physical prototype alongside the team- meaning I worked through both the business case (is this viable to sell at POLBAN) and the engineering constraints (does the timer logic actually shut off UV exposure safely, does the vapor distribute evenly) rather than just one or the other.</p>
@@ -478,7 +532,7 @@
       </div>
 
       <div class="proj-card">
-        <h4>Bluetooth Jamming Device</h4>
+        <h4>Bluetooth RF Interference Experiment</h4>
         <div class="project-detail-scroll">
           <p><strong>Built a 2.4 GHz signal interference device to study how Bluetooth communication degrades under RF noise.</strong></p>
           <p>This project applied core wireless communication principles by building a device that generates interference in the 2.4 GHz ISM band- the same frequency range Bluetooth, Wi-Fi, and many IoT protocols operate in. The goal wasn't malicious disruption but understanding, from the transmitter side, how shared-spectrum wireless protocols behave when the channel is noisy: how Bluetooth's frequency-hopping spread spectrum responds to interference, and at what point communication reliably breaks down.</p>
@@ -533,7 +587,18 @@
       <div class="cert-item"><div><div class="cert-name">LKMM - TD SINERGI</div><div class="cert-org">BEM KEMA POLBAN</div></div><div class="cert-date">Nov 2023</div></div>
       <div class="cert-item"><div><div class="cert-name">HIMATEL POLBAN Leadership School  -  Participant</div><div class="cert-org">HIMATEL POLBAN</div></div><div class="cert-date">Nov 2024</div></div>
       <!-- ISI: nama skema/LSP sesuai sertifikat BNSP -->
-      <div class="cert-item"><div><div class="cert-name">BNSP Competency Certification  -  Software Development (Pengembangan Perangkat Lunak)</div><div class="cert-org">Badan Nasional Sertifikasi Profesi (BNSP)  - KKNI LEVEL II/SMKN 7 BALEENDAH]  -  earned during SMK, valid 2022 – 2025 (expired)</div></div><div class="cert-date">2022 – 2025</div></div>
+      <div class="cert-item">
+      <div>
+        <div class="cert-name">
+          BNSP Competency Certificate – Software Development
+        </div>
+        <div class="cert-org">
+          BNSP | KKNI Level II – SMKN 7 Baleendah
+          (Earned in 2022; validity expired in 2025)
+        </div>
+      </div>
+      <div class="cert-date">2022–2025</div>
+    </div>
     </div>
   </div>
 </section>
@@ -603,10 +668,12 @@
 
 <script>
   document.querySelectorAll('.gtab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.gtab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const f = tab.dataset.filter;
+    document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeLightbox();
+      }
+    });
+    const f = tab.dataset.filter;
       document.querySelectorAll('.gitem').forEach(item => {
         item.classList.toggle('show', f === 'all' || item.dataset.cat === f);
       });
